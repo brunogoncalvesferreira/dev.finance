@@ -37,6 +37,7 @@
 
   ```
   $ git clone https://github.com/brunogoncalvesferreira/dev.finance.git
+  ```
 
   > Acesse a pasta
 
@@ -50,7 +51,7 @@
   $ npm install
   ```
 
-  > Iniciar projeto
+  > Rodar projeto
 
   ```
   $ npm run dev
