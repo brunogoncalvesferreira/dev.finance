@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  color: var(--slate200);
+
+  position: relative;
+}
+
+main {
+  flex: 1;
+
+  max-width: 60rem;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.cardContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.buttonModal {
+  margin: 2rem 0;
+}
+
+.buttonModal button {
+  width: 14rem;
+  height: 4rem;
+  border: 0;
+  border-radius: 6px;
+  background-color: var(--sky600);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--slate200);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+table {
+  width: 100%;
+  margin-top: 2rem;
+  border-collapse: collapse;
+
+  background-color: var(--slate800);
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+table thead {
+  text-align: left;
+}
+
+table thead tr th {
+  padding: 1rem;
+  border-bottom: 1px solid var(--slate200);
+}
+
+@media(max-width: 700px) {
+  html {
+    font-size: 93.75%;
+  }
+  
+  .cardContainer {
+    flex-direction: column;
+  }
+}

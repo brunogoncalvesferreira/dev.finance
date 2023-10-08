@@ -1,0 +1,25 @@
+tr td {
+  padding: 1rem;
+}
+
+tr td button {
+  background-color: transparent;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  transition: all .2;
+}
+
+tr td button:hover {
+  filter: brightness(0.8);
+}
+
+.negative {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.positive {
+  color: var(--green600);
+  font-weight: 700;
+}

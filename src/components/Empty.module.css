@@ -1,0 +1,10 @@
+.container {
+  margin-top: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container h2 {
+  text-align: center;
+}
