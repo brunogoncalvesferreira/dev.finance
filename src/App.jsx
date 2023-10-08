@@ -28,7 +28,6 @@ export function App() {
   const [income, setIncome] = useState([])
   const [expense, setExpense] = useState([])
   const [transaction, setTransaction] = useState([])
-  // const [total, setTotal] = useState(0)
 
   useEffect(() => {
     const combinedTransaction = [...income, ...expense]
