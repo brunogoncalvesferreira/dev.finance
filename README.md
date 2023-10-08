@@ -56,10 +56,11 @@
   ```
   $ npm run dev
   ```
-  <p>O projeto está rodando na porta 3333. Exemplo http://localhost:3000</p>
+  <p>O projeto está rodando na porta 3000. Exemplo <a href='http://localhost:3000'>http://localhost:3000</a></p>
 
   <h2 id="license">📝 Licença</h2>
-  <p>Este projeto está licenciado com a licença MIT(https://github.com/brunogoncalvesferreira/treine.me/blob/main/LICENSE).</p>
+  
+  Este projeto está licenciado com a licença [MIT](https://github.com/brunogoncalvesferreira/treine.me/blob/main/LICENSE).
 
   <h2>🙋🏻‍♂️ Entre em contato<h2>
   <div style="display: flex;">
