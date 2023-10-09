@@ -2,19 +2,19 @@ import styles from './CardsTransaction.module.css'
 import { Trash2 } from 'lucide-react'
 
 export function CardsTransaction({
-  description,
+  desc,
   value,
   date,
   onHandleDeleteTransaction,
-  transactionID,
+  transactionsID,
 }) {
   function handleDelete() {
-    onHandleDeleteTransaction(transactionID)
+    onHandleDeleteTransaction(transactionsID)
   }
 
   return (
     <tr>
-      <td className={styles.description}>{description}</td>
+      <td className={styles.description}>{desc}</td>
       <td className={value > 0 ? `${styles.positive}` : `${styles.negative}`}>
         R$ {value.toFixed(2).replace('.', ',')}
       </td>

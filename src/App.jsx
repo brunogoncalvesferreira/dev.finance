@@ -1,14 +1,13 @@
 import styles from './App.module.css'
+import { useEffect, useState } from 'react'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { CardsBalance } from './components/CardsBalance'
 import { PlusCircle } from 'lucide-react'
 import { Form } from './components/Form'
-import { useEffect, useState } from 'react'
 import { CardsTransaction } from './components/CardsTransaction'
-import { Empty } from './components/Empty'
 
-const data = [
+const cardData = [
   {
     title: 'Entrada',
   },
@@ -21,75 +20,79 @@ const data = [
 ]
 
 export function App() {
+  const [transactions, setTransactions] = useState([])
   const [description, setDescription] = useState('')
-  const [value, setValue] = useState(0)
+  const [amount, setAmount] = useState(0)
   const [date, setDate] = useState('')
-  const [isModel, setIsModel] = useState(false)
-  const [income, setIncome] = useState([])
-  const [expense, setExpense] = useState([])
-  const [transaction, setTransaction] = useState([])
+  const [isModal, setIsModal] = useState(false)
+
+  function loadingGetTransaction() {
+    const saved = localStorage.getItem('transactions')
+    if (saved) {
+      setTransactions(JSON.parse(saved))
+    }
+  }
 
   useEffect(() => {
-    const combinedTransaction = [...income, ...expense]
-    setTransaction(combinedTransaction)
-  }, [income, expense])
+    loadingGetTransaction()
+  }, [])
 
-  function handleOpenModal() {
-    setIsModel(!isModel)
+  function localStorageSetTransaction(newTransaction) {
+    setTransactions(newTransaction)
+    localStorage.setItem('transactions', JSON.stringify(newTransaction))
+  }
+
+  function handleOpenForm() {
+    setIsModal(!isModal)
   }
 
   const dateFormat = date.split('-')
-  const newDate = `${dateFormat[2]}/${dateFormat[1]}/${dateFormat[0]}`
+  const newDate = `${dateFormat[2]}-${dateFormat[1]}-${dateFormat[0]}`
 
   function handleAddNewTransaction() {
     const newTransaction = {
       id: crypto.randomUUID(),
-      description,
-      value: Number(value),
+      desc: description,
+      value: Number(amount),
       newDate,
     }
-    if (value > 0) {
-      setIncome((statePrevent) => [...statePrevent, newTransaction])
-    } else {
-      setExpense((statePrevent) => [...statePrevent, newTransaction])
-    }
-    alert('Transação Salva com sucesso!')
+    localStorageSetTransaction([...transactions, newTransaction])
+
+    alert('Transação salvo com sucesso.')
     setDescription('')
-    setValue('')
+    setAmount(0)
     setDate('')
   }
 
   function handleDeleteTransaction(transactionID) {
-    const actionDeleteTransaction = transaction.filter((transaction) => {
+    const actionDelete = transactions.filter((transaction) => {
       return transaction.id !== transactionID
     })
 
-    if (value > 0) {
-      setIncome(actionDeleteTransaction.filter((income) => income.value > 0))
-      setExpense(
-        actionDeleteTransaction.filter((expense) => expense.value <= 0),
-      )
-    } else {
-      setIncome(actionDeleteTransaction.filter((income) => income.value > 0))
-      setExpense(
-        actionDeleteTransaction.filter((expense) => expense.value <= 0),
-      )
-    }
-    alert('Transação deletada com sucesso!')
+    localStorageSetTransaction(actionDelete)
   }
 
+  const income = transactions
+    .filter((item) => item.value > 0)
+    .map((income) => income.value)
+
+  const expense = transactions
+    .filter((item) => item.value < 0)
+    .map((expense) => expense.value)
+
   const sunIncome = income.reduce(
-    (accumulator, incomes) => accumulator + incomes.value,
+    (accumulator, incomes) => accumulator + incomes,
     0,
   )
 
   const sunExpense = expense.reduce(
-    (accumulator, expense) => accumulator + expense.value,
+    (accumulator, expenses) => accumulator + expenses,
     0,
   )
 
-  const convertedSunExpense = Math.abs(sunExpense)
-  const total = sunIncome - convertedSunExpense
+  const removeNegativeSign = Math.abs(sunExpense)
+
+  const total = sunIncome - removeNegativeSign
 
   return (
     <div className={styles.container}>
@@ -97,62 +100,59 @@ export function App() {
 
       <main>
         <div className={styles.cardContainer}>
-          {data.map((item, index) => (
+          {cardData.map((item, index) => (
             <CardsBalance
               key={index}
               title={item.title}
-              sunIncome={sunIncome}
-              sunExpense={sunExpense}
+              income={sunIncome}
+              expense={sunExpense}
               total={total}
             />
           ))}
         </div>
 
         <div className={styles.buttonModal}>
-          <button onClick={handleOpenModal}>
+          <button onClick={handleOpenForm}>
             <PlusCircle />
             Nova Transação
           </button>
         </div>
 
         <Form
-          openModal={isModel}
-          setDescription={setDescription}
-          setValue={setValue}
-          setDate={setDate}
-          description={description}
-          value={value}
+          desc={description}
+          amount={amount}
           date={date}
-          onHandleOpenModal={handleOpenModal}
+          setDescription={setDescription}
+          setAmount={setAmount}
+          setDate={setDate}
           onHandleAddNewTransaction={handleAddNewTransaction}
+          isModal={isModal}
+          onHandleOpenForm={handleOpenForm}
+          onHandleAddNewTransactions={handleAddNewTransaction}
         />
 
-        {transaction.length === 0 ? (
-          <Empty />
-        ) : (
-          <table>
-            <thead>
-              <tr>
-                <th>Descrição</th>
-                <th>Valor</th>
-                <th>Data</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {transaction.map((item) => (
-                <CardsTransaction
-                  key={item.id}
-                  description={item.description}
-                  value={item.value}
-                  date={item.newDate}
-                  onHandleDeleteTransaction={handleDeleteTransaction}
-                  transactionID={item.id}
-                />
-              ))}
-            </tbody>
-          </table>
-        )}
+        <table>
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Valor</th>
+              <th>Data</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map((transaction, index) => (
+              <CardsTransaction
+                key={index}
+                desc={transaction.desc}
+                value={transaction.value}
+                date={transaction.newDate}
+                onHandleDeleteTransaction={handleDeleteTransaction}
+                transactionsID={transaction.id}
+              />
+            ))}
+          </tbody>
+        </table>
       </main>
 
       <Footer />

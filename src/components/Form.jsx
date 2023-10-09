@@ -1,42 +1,34 @@
 import styles from './Form.module.css'
 
 export function Form({
-  openModal,
-  setDescription,
-  setValue,
-  setDate,
-  onHandleOpenModal,
-  onHandleAddNewTransaction,
-  description,
-  value,
+  desc,
+  amount,
   date,
+  setDescription,
+  setAmount,
+  setDate,
+  isModal,
+  onHandleOpenForm,
+  onHandleAddNewTransactions,
 }) {
   function handleSubmit(event) {
     event.preventDefault()
   }
-
-  function handleCloseModal() {
-    onHandleOpenModal()
-  }
-
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={openModal === true ? styles.active : ''}
-    >
+    <form onSubmit={handleSubmit} className={isModal ? `${styles.active}` : ''}>
       <div className={styles.content}>
         <h2>Nova Transação</h2>
         <div className={styles.inputs}>
           <input
-            onChange={(event) => setDescription(event.target.value)}
-            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            value={desc}
             type="text"
             placeholder="Descrição"
           />
           <div className={styles.values}>
             <input
-              onChange={(event) => setValue(event.target.value)}
-              value={value}
+              onChange={(e) => setAmount(e.target.value)}
+              value={amount}
               type="number"
               placeholder="R$ 0,00"
               step={0.01}
@@ -46,17 +38,20 @@ export function Form({
             </strong>
           </div>
           <input
-            onChange={(event) => setDate(event.target.value)}
+            onChange={(e) => setDate(e.target.value)}
             value={date}
             type="date"
           />
         </div>
 
         <div className={styles.control}>
-          <button onClick={handleCloseModal} className={styles.btnCancel}>
+          <button onClick={onHandleOpenForm} className={styles.btnCancel}>
             Cancelar
           </button>
-          <button onClick={onHandleAddNewTransaction} className={styles.btnAdd}>
+          <button
+            onClick={onHandleAddNewTransactions}
+            className={styles.btnAdd}
+          >
             Adicionar
           </button>
         </div>
