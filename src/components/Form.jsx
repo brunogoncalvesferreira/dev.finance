@@ -41,6 +41,7 @@ export function Form({
             onChange={(e) => setDate(e.target.value)}
             value={date}
             type="date"
+            required
           />
         </div>
 
@@ -49,6 +50,9 @@ export function Form({
             Cancelar
           </button>
           <button
+            disabled={
+              desc.length === 0 || amount.length === 0 || date.length === 0
+            }
             onClick={onHandleAddNewTransactions}
             className={styles.btnAdd}
           >

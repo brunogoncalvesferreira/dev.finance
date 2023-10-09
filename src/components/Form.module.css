@@ -103,6 +103,11 @@ form .content .control .btnAdd {
   background-color: var(--sky600);
 }
 
+form .content .control .btnAdd:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 @media(max-width: 700px) {
   form {
     width: 100%;
