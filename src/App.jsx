@@ -6,6 +6,7 @@ import { CardsBalance } from './components/CardsBalance'
 import { PlusCircle } from 'lucide-react'
 import { Form } from './components/Form'
 import { CardsTransaction } from './components/CardsTransaction'
+import { Empty } from './components/Empty'
 
 const cardData = [
   {
@@ -131,28 +132,32 @@ export function App() {
           onHandleAddNewTransactions={handleAddNewTransaction}
         />
 
-        <table>
-          <thead>
-            <tr>
-              <th>Descrição</th>
-              <th>Valor</th>
-              <th>Data</th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map((transaction, index) => (
-              <CardsTransaction
-                key={index}
-                desc={transaction.desc}
-                value={transaction.value}
-                date={transaction.newDate}
-                onHandleDeleteTransaction={handleDeleteTransaction}
-                transactionsID={transaction.id}
-              />
-            ))}
-          </tbody>
-        </table>
+        {transactions.length === 0 ? (
+          <Empty />
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {transactions.map((transaction, index) => (
+                <CardsTransaction
+                  key={index}
+                  desc={transaction.desc}
+                  value={transaction.value}
+                  date={transaction.newDate}
+                  onHandleDeleteTransaction={handleDeleteTransaction}
+                  transactionsID={transaction.id}
+                />
+              ))}
+            </tbody>
+          </table>
+        )}
       </main>
 
       <Footer />
