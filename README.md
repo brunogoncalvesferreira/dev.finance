@@ -1,17 +1,17 @@
   <h1 align="center">dev.finance</h1>
 
   <p align="center">
-    <a href="#project">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#tech">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#runproject">Como rodar projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-    <a href="#license">Licença</a>
+    <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#-como-rodar-projeto">Como rodar projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <a href="#-licença">Licença</a>
   </p>
 
   <p align="center">
     <img src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000" />
   </p>
 
-  <h2 id="project">📋 Projeto</h2>
+  ## 📋 Projeto
   <p>
     Aplicação de finanças disponibilizada pela Rocketseat.
   </p>
@@ -19,7 +19,7 @@
   <img
     src="./.github/preview.png">
 
-  <h2 id="tech">👨🏻‍💻 Tecnologias</h2>
+  ## 👨🏻‍💻 Tecnologias
   <p>
     Abaixo as tecnologias que utilizamos para o desenvolvimento do projeto:
 
@@ -28,7 +28,7 @@
     3 - CSS Modules
   </p>
 
-  <h2 id="runproject">💿 Como rodar projeto</h2>
+  ## 💿 Como rodar projeto
   <p>Para rodar o projeto localmente, precisamos ter o `Node.js` e o `npm` instalados.</p>
 
   <Strong>Siga o passo a passo:</Strong>
@@ -58,7 +58,7 @@
   ```
   <p>O projeto está rodando na porta 3000. Exemplo <a href='http://localhost:3000'>http://localhost:3000</a></p>
 
-  <h2 id="license">📝 Licença</h2>
+  ## 📝 Licença
   
   Este projeto está licenciado com a licença [MIT](https://github.com/brunogoncalvesferreira/treine.me/blob/main/LICENSE).
 
